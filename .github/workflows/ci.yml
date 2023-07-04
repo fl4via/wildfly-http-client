@@ -30,12 +30,24 @@ jobs:
         echo '127.0.0.1   localhost localhost.localdomain localhost4 localhost4.localdomain4' > %SystemRoot%\System32\drivers\etc\hosts
         echo '::1         localhost localhost.localdomain localhost6 localhost6.localdomain6' >> %SystemRoot%\System32\drivers\etc\hosts
       shell: cmd
-    - uses: actions/checkout@v3
+    - name: Download Undertow
+      uses: actions/checkout@v3
+      with:
+        repository: fl4via/undertow
+        ref: WEJBHTTP-112_INVESTIGATION
+        path: undertow
     - name: Set up JDK ${{ matrix.jdk-distribution }} ${{ matrix.jdk-version }}
       uses: actions/setup-java@v3
       with:
         distribution: ${{ matrix.jdk-distribution }}
         java-version: ${{ matrix.jdk-version }}
+    - name: Build undertow
+      run: |
+        cd undertow
+        mvn -ntp -U -B -fae clean install -DskipTests=true
+        cd ..
+    - name: Checkout the wildfly-http-client project
+      uses: actions/checkout@v3
     - name: Run Tests
       run: mvn -ntp -U -B -fae clean install
     - uses: actions/upload-artifact@v3
