@@ -47,7 +47,7 @@
         <maven.compiler.target>11</maven.compiler.target>
         <maven.compiler.source>11</maven.compiler.source>
         <!-- Versions -->
-        <version.io.undertow>2.2.22.Final</version.io.undertow>
+        <version.io.undertow>2.3.7.Final</version.io.undertow>
         <version.org.jboss.logging>3.4.1.Final</version.org.jboss.logging>
         <version.org.jboss.logging-tools>2.2.1.Final</version.org.jboss.logging-tools>
         <version.org.junit>4.13.1</version.org.junit>
