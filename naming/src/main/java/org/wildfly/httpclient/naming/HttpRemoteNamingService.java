@@ -130,6 +130,7 @@ public class HttpRemoteNamingService {
                     doMarshall(exchange, result);
                 }
             } catch (Throwable e) {
+                e.printStackTrace();
                 sendException(exchange, httpServiceConfig, StatusCodes.INTERNAL_SERVER_ERROR, e);
             }
         }
